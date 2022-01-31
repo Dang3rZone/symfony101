@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\PostType;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,7 +30,7 @@ class PostController extends AbstractController
         // create a new post with title
         $post = new Post();
 
-        $post->setTitle('this is a title');
+        $form = $this->createForm(PostType::class, $post);
 
         // entity manager
         $em = $doctrine->getManager();
@@ -38,7 +39,9 @@ class PostController extends AbstractController
         $em->flush();
 
         // return a response
-        return $this->redirect($this->generateUrl('post.index'));
+        return $this->render('post/create.html.twig', [
+            'form' => $form
+        ]);
     }
 
     #[Route('/show/{id}', name: 'show')]
