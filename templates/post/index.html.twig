@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <h2>All your posts</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Title</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>
+                    <a href="{{ path('post.show',{id: post.id}) }}">
+                        {{ post.title }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path() }}"></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
