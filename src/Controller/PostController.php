@@ -38,7 +38,7 @@ class PostController extends AbstractController
         $em->flush();
 
         // return a response
-        return new Response('Post created');
+        return $this->redirect($this->generateUrl('post.index'));
     }
 
     #[Route('/show/{id}', name: 'show')]

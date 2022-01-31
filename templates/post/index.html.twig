@@ -21,7 +21,9 @@
                     </a>
                 </td>
                 <td>
-                    <a href="{{ path() }}"></a>
+                    <a class="text-danger" href="{{ path('post.delete',{id: post.id}) }}">
+                        Delete
+                    </a>
                 </td>
             </tr>
         {% endfor %}
