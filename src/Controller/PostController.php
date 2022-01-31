@@ -32,15 +32,22 @@ class PostController extends AbstractController
 
         $form = $this->createForm(PostType::class, $post);
 
-        // entity manager
-        $em = $doctrine->getManager();
+        $form->handleRequest($request);
 
-        $em->persist($post);
-        $em->flush();
+        if ($form->isSubmitted()) {
+            // entity manager
+            $em = $doctrine->getManager();
+
+            $em->persist($post);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('post.index'));
+        }
+
 
         // return a response
         return $this->render('post/create.html.twig', [
-            'form' => $form
+            'form' => $form->createView()
         ]);
     }
 
