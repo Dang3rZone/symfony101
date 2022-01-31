@@ -59,6 +59,8 @@ class PostController extends AbstractController
         $em->remove($post);
         $em->flush();
 
+        $this->addFlash('success', 'Post was deleted.');
+
         return $this->redirect($this->generateUrl('post.index'));
     }
 }
