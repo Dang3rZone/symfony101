@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraint as Assert;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -13,6 +14,7 @@ class Post
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title;
 
